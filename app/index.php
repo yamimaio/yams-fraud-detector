@@ -5,33 +5,36 @@
  * @author Yamila Maio  <yamimaio@gmail.com>
  */
 
-use Monolog\Handler\StreamHandler as StreamHandler;
-use Monolog\Logger as Logger;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+
+use FraudDetector\Builders\ContainerBuilder as Builder;
+use FraudDetector\Middleware\OrderValidator;
 
 require_once '../vendor/autoload.php';
 
-$app = new \Slim\App;
+//temporary config options
+$config['displayErrorDetails'] = true;
+$config['addContentLengthHeader'] = false;
+
+$app = new \Slim\App(["settings" => $config]);
 
 //load dependencies as services
 $container = $app->getContainer();
-
-//add logger as a service
-$container['logger'] = function ($c) {
-    $logger = new Logger('fraud_logger');
-    $file_handler = new StreamHandler("../logs/app.log");
-    $logger->pushHandler($file_handler);
-    return $logger;
-};
+$builder = new Builder($container);
+$container = $builder->getContainer();
 
 //define API routes
-$app->get('/hello/{name}', function (Request $request, Response $response) {
-    $this->logger->addInfo("App is running. Hello route called");
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello, $name");
+$app->group('/fraud', function () use ($app) {
+    /**
+     * Route for indicating if given order is fraud or not
+     */
+    $app->post('/status', 'FraudStatusAction');
 
-    return $response;
-});
+    /**
+     * Route for indicating fraud scoring for given order
+     */
+    $app->post('/score', 'FraudScoreAction');
+})->add(new OrderValidator());
+// add middleware to validate order payload for all methods in fraud group
+
 
 $app->run();
