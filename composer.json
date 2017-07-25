@@ -2,11 +2,12 @@
   "require": {
     "php": "^7.0",
     "slim/slim": "^3.0",
-    "hassankhan/config": "^0.10.0"
+    "hassankhan/config": "^0.10.0",
+    "monolog/monolog": "^1.23"
   },
   "autoload": {
     "psr-4": {
-      "FraudDetector": "src/FraudDetector/"
+      "FraudDetector\\": "src/FraudDetector/"
     }
   }
 }
