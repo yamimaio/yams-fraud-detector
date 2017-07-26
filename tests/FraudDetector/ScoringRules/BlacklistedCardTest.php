@@ -7,7 +7,10 @@
 
 namespace tests\FraudDetector\ScoringRules;
 
+use FraudDetector\ScoringRules\BlacklistedCard;
 use tests\FraudDetector\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
+
+require_once 'ScoringRuleTestCase.php';
 
 /**
  * Test for Class BlacklistedCard

@@ -8,6 +8,7 @@
 
 namespace tests\FraudDetector\ScoringRules;
 
+use FraudDetector\ScoringRules\BlacklistedCard;
 use PHPUnit\Framework\TestCase;
 
 /**
