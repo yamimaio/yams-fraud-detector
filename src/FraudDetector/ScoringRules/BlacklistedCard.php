@@ -7,20 +7,15 @@
 
 namespace FraudDetector\ScoringRules;
 
-use FraudDetector\Interfaces\ScoringRuleInterface;
+use FraudDetector\ScoringRules\ScoringRule as ScoringRule;
 
 /**
  * Rule to get scoring for an order checking against a blacklist of credit cards
  *
  * @package FraudDetector\Rules
  */
-class BlacklistedCard implements ScoringRuleInterface
+class BlacklistedCard extends ScoringRule
 {
-    /**
-     * @var int scoring returned if fraud suspected
-     */
-    protected $scoring;
-
     /**
      * Returns the scoring for the order according to the credit card.
      *
@@ -33,28 +28,6 @@ class BlacklistedCard implements ScoringRuleInterface
     public function getScoring($order)
     {
 
-    }
-
-    /**
-     * Returns the scoring the rule adds if fraud suspected
-     *
-     * @return int
-     */
-    public function getRuleScoring()
-    {
-        return $this->scoring;
-    }
-
-    /**
-     * Sets the scoring the rule adds if fraud suspected
-     *
-     * @param int $scoring
-     *
-     * @return void
-     */
-    public function setRuleScoring($scoring)
-    {
-        $this->scoring = $scoring;
     }
 
     /**
