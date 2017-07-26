@@ -7,7 +7,7 @@
 
 namespace FraudDetector\Builders;
 
-use FraudDetector\Actions\FraudScoreAction as FraudScoreAction;
+use FraudDetector\Actions\FraudScoringAction as FraudScoreAction;
 use FraudDetector\Actions\FraudStatusAction as FraudStatusAction;
 use Monolog\Handler\StreamHandler as StreamHandler;
 use Monolog\Logger as Logger;
@@ -73,12 +73,12 @@ class ContainerBuilder
     }
 
     /**
-     * Adds FraudScoreAction to container
+     * Adds FraudScoringAction to container
      */
     protected function addFraudScoreAction()
     {
-        $this->container['FraudScoreAction'] = function ($c) {
-            return new FraudScoreAction($c['logger']);
+        $this->container['FraudScoringAction'] = function ($c) {
+            return new FraudScoringAction($c['logger']);
         };
     }
 }

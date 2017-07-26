@@ -32,7 +32,7 @@ $app->group('/fraud', function () use ($app) {
     /**
      * Route for indicating fraud scoring for given order
      */
-    $app->post('/score', 'FraudScoreAction');
+    $app->post('/scoring', 'FraudScoringAction');
 })->add(new OrderValidator());
 // add middleware to validate order payload for all methods in fraud group
 

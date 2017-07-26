@@ -1,6 +1,6 @@
 <?php
 /**
- * FraudScoreAction.php
+ * FraudScoringAction.phphp
  *
  * @author Yamila Maio <yamimaio@gmail.com
  */
@@ -13,11 +13,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 /**
- * Class FraudScoreAction
+ * Class FraudScoringAction
  *
  * @package FraudDetector\Actions
  */
-class FraudScoreAction implements ActionInterface
+class FraudScoringAction implements ActionInterface
 {
     /**
      * @var Logger
@@ -25,7 +25,7 @@ class FraudScoreAction implements ActionInterface
     protected $logger;
 
     /**
-     * FraudScoreAction constructor.
+     * FraudScoringAction constructor.
      *
      * @param $logger
      */
