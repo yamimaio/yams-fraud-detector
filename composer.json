@@ -7,7 +7,11 @@
   },
   "autoload": {
     "psr-4": {
-      "FraudDetector\\": "src/FraudDetector/"
+      "FraudDetector\\": "src/FraudDetector/",
+      "tests\FraudDetector\\": "tests/FraudDetector/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.2"
   }
 }
