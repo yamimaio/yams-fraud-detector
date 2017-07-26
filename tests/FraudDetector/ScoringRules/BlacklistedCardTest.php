@@ -5,12 +5,10 @@
  * @author Yamila Maio <yamimaio@gmail.com
  */
 
-namespace tests\FraudDetector\ScoringRules;
+namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\BlacklistedCard;
-use tests\FraudDetector\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
-
-require_once 'ScoringRuleTestCase.php';
+use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
 
 /**
  * Test for Class BlacklistedCard

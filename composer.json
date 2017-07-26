@@ -7,8 +7,12 @@
   },
   "autoload": {
     "psr-4": {
-      "FraudDetector\\": "src/FraudDetector/",
-      "tests\FraudDetector\\": "tests/FraudDetector/"
+      "FraudDetector\\": "src/FraudDetector/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FraudDetector\\Tests\\": "tests/FraudDetector/"
     }
   },
   "require-dev": {

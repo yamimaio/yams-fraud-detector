@@ -6,7 +6,7 @@
  * @author Yamila Maio <yamimaio@gmail.com
  */
 
-namespace tests\FraudDetector\ScoringRules;
+namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\BlacklistedCard;
 use PHPUnit\Framework\TestCase;
