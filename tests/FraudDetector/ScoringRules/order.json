@@ -42,7 +42,6 @@
     "return_on:": "2017-05-15T15:05:00-07:00",
     "to_city": "Las Vegas",
     "to_country": "USA",
-    "to_country": "US",
     "trip_type": "one-way",
     "passengers": 1
   },
