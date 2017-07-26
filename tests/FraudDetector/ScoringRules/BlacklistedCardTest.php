@@ -23,15 +23,13 @@ class BlacklistedCardTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsScoringNumberWhenCardIsBlackListed()
     {
-        $this->rule->setRuleScoring($this->scoring);
-
         //get blacklist
-        $blacklist_method = $this->getMethod('getBlacklist');
-        $blacklist = $blacklist_method->invokeArgs($this->rule, []);
+        $blacklistMethod = $this->getMethod('getBlacklist');
+        $blacklist = $blacklistMethod->invokeArgs($this->rule, []);
         //get any blacklist element
-        $blacklisted_card = $blacklist[0];
+        $blacklistedCard = $blacklist[0];
         //modify order to have blacklisted card
-        $this->order['payment']['cc_number'] = $blacklisted_card;
+        $this->order['payment']['cc_number'] = $blacklistedCard;
 
         $this->assertSame(
             $this->scoring,
@@ -45,8 +43,6 @@ class BlacklistedCardTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsZeroWhenCardIsNotBlackListed()
     {
-        $this->rule->setRuleScoring($this->scoring);
-
         $this->assertSame(
             0,
             $this->rule->getScoring($this->order)

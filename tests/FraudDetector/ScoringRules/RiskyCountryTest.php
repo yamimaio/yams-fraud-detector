@@ -23,8 +23,6 @@ class RiskyCountryTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsScoringNumberWhenDestinyIsRiskyCountry()
     {
-        $this->rule->setRuleScoring($this->scoring);
-
         //get risky countries
         $riskyCountriesMethod = $this->getMethod('getRiskyCountries');
         $riskyCountries = $riskyCountriesMethod->invokeArgs($this->rule, []);
@@ -45,8 +43,6 @@ class RiskyCountryTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsZeroWhenDestinyIsNotRiskyNorNeighborCountry()
     {
-        $this->rule->setRuleScoring($this->scoring);
-
         //modify order to have non existing country (for sure not risky or
         // neighbor!)
         $this->order['travel_ticket']['to_country'] = 'fake_country';
@@ -63,8 +59,6 @@ class RiskyCountryTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsScoringNumberWhenDestinyIsNeighborCountry()
     {
-        $this->rule->setRuleScoring($this->scoring);
-
         //get risky countries
         $neighborCountriesMethod = $this->getMethod('getNeighborCountries');
         $neighborCountries = $neighborCountriesMethod->invokeArgs(
