@@ -8,7 +8,7 @@
 
 namespace FraudDetector\Tests\ScoringRules;
 
-use FraudDetector\ScoringRules\BlacklistedCard;
+use FraudDetector\ScoringRules\ScoringRule;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 class ScoringRuleTestCase extends TestCase
 {
     /**
-     * @var BlacklistedCard
+     * @var ScoringRule
      */
     protected $rule;
     /**
