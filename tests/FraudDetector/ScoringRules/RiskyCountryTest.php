@@ -26,6 +26,7 @@ class RiskyCountryTest extends ScoringRuleTestCase
         // Create a mock for the Rule class,
         // only mock the getRiskyCountries() and getNeighborCountries methods
         $riskyRule = $this->getMockBuilder(RiskyCountry::class)
+            ->setConstructorArgs([20])
             ->setMethods(['getRiskyCountries', 'getNeighborCountries'])
             ->getMock();
 
@@ -98,6 +99,7 @@ class RiskyCountryTest extends ScoringRuleTestCase
         // Create a mock for the Rule class,
         // only mock the getRiskyCountries() method.
         $riskyRule = $this->getMockBuilder(RiskyCountry::class)
+            ->setConstructorArgs([20])
             ->setMethods(['getRiskyCountries'])
             ->getMock();
 
@@ -135,7 +137,6 @@ class RiskyCountryTest extends ScoringRuleTestCase
     {
         parent::setUp();
         $this->scoring = 20;
-        $this->rule = new RiskyCountry();
-        $this->rule->setRuleScoring($this->scoring);
+        $this->rule = new RiskyCountry($this->scoring);
     }
 }

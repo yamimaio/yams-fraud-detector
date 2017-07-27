@@ -68,8 +68,6 @@ class DepartureTimeFrameTest extends ScoringRuleTestCase
     {
         parent::setUp();
         $this->scoring = 20;
-        $this->rule = new DepartureTimeFrame();
-        $this->rule->setRuleScoring($this->scoring);
-        $this->rule->setAcceptedTimeFrame(86400); //24hs
+        $this->rule = new DepartureTimeFrame($this->scoring, 86400);//24hs
     }
 }

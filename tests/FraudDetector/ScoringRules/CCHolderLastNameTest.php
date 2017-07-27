@@ -84,7 +84,6 @@ class CCHolderLastNameTest extends ScoringRuleTestCase
     {
         parent::setUp();
         $this->scoring = 10;
-        $this->rule = new CCHolderLastName();
-        $this->rule->setRuleScoring($this->scoring);
+        $this->rule = new CCHolderLastName($this->scoring);
     }
 }

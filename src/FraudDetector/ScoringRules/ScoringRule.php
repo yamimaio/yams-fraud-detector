@@ -21,6 +21,15 @@ abstract class ScoringRule implements ScoringRuleInterface
      */
     protected $scoring;
 
+    /**
+     * ScoringRule constructor.
+     *
+     * @param int $scoring
+     */
+    public function __construct(int $scoring)
+    {
+        $this->scoring = $scoring;
+    }
 
     /**
      * Returns the scoring the rule adds if fraud suspected

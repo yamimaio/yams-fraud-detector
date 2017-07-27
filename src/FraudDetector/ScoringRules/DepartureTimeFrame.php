@@ -22,6 +22,18 @@ class DepartureTimeFrame extends ScoringRule
     protected $timeFrame;
 
     /**
+     * DepartureTimeFrame constructor.
+     *
+     * @param int $scoring
+     * @param int $acceptedTimeFrame
+     */
+    public function __construct(int $scoring, int $acceptedTimeFrame)
+    {
+        parent::__construct($scoring);
+        $this->timeFrame = $acceptedTimeFrame;
+    }
+
+    /**
      * Returns the scoring for the order according the time frame between time
      * ordered and departure date.
      *
@@ -38,7 +50,6 @@ class DepartureTimeFrame extends ScoringRule
         $orderTime = strtotime($order['transaction']['ordered_on']);
         $differenceInSeconds = $departureTime - $orderTime;
 
-        var_dump($orderTime, $departureTime, $differenceInSeconds);
         return $differenceInSeconds < $this->timeFrame
             ? $this->scoring : 0;
     }

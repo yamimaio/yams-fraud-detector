@@ -56,7 +56,6 @@ class BlacklistedCardTest extends ScoringRuleTestCase
     {
         parent::setUp();
         $this->scoring = 100;
-        $this->rule = new BlacklistedCard();
-        $this->rule->setRuleScoring($this->scoring);
+        $this->rule = new BlacklistedCard($this->scoring);
     }
 }

@@ -96,7 +96,6 @@ class PaxLastNameTest extends ScoringRuleTestCase
     {
         parent::setUp();
         $this->scoring = 10;
-        $this->rule = new PaxLastName();
-        $this->rule->setRuleScoring($this->scoring);
+        $this->rule = new PaxLastName($this->scoring);
     }
 }
