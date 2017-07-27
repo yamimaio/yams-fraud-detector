@@ -18,9 +18,11 @@ Only routes accesible are:
 ### fraud/status ###
 Indicates if the given order is a fraud or not.
 Response:
-```javascript{
+```javascript
+{
     "status": false
-}```
+}
+```
 
 Method: POST
 Content-type: application/json
@@ -30,7 +32,8 @@ Check it out on Heroku: https://warm-plateau-67794.herokuapp.com/fraud/status
 ### fraud/scoring ###
 Returns the fraud scoring for the given order.
 Response:
-```javascript{
+```javascript
+{
     "scoring": 70
 }```
 
