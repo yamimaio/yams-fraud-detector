@@ -1,0 +1,28 @@
+{
+  "displayErrorDetails": true,
+  "addContentLengthHeader": false,
+  "detectorConfig": {
+    "fraudScoring": 80,
+    "maxScoring": 100,
+    "rules": [
+      {
+        "name": "CCHolderLastName"
+      },
+      {
+        "name": "DepartureTimeFrame",
+        "timeFrame": 86400
+      },
+      {
+        "name": "PaxLastName"
+      },
+      {
+        "name": "RiskyCountry"
+      }
+    ],
+    "maxScoringRules": [
+      {
+        "name": "BlacklistedCard"
+      }
+    ]
+  }
+}

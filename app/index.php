@@ -8,22 +8,15 @@
 
 use FraudDetector\Builders\ContainerBuilder as Builder;
 use FraudDetector\Middleware\OrderValidator;
+use Noodlehaus\Config;
 
 require_once '../vendor/autoload.php';
 
 //temporary config options
-$config['displayErrorDetails'] = true;
-$config['addContentLengthHeader'] = false;
-$config['detectorConfig']['fraudScoring'] = 80;
-$config['detectorConfig']['maxScoring'] = 100;
-$config['detectorConfig']['rules'] = [
-    ['name' => 'CCHolderLastName'],
-    ['name' => 'DepartureTimeFrame', 'timeFrame' => 86400],
-    ['name' => 'PaxLastName'],
-    ['name' => 'RiskyCountry'],
-];
-$config['detectorConfig']['maxScoringRules'] = [['name' => 'BlacklistedCard']];
 
+// Load a single file
+$conf = Config::load('config/config.json');
+$config = $conf->all();
 
 $app = new \Slim\App(["settings" => $config]);
 
