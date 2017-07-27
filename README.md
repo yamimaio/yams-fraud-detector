@@ -125,7 +125,8 @@ For each rule you choose as maxScoringRule the scoring level will be automatical
 
 #### Try it out ####
 If you wish to test rules you can use:
+
 * Blacklisted credit card: 5665777755559999
 * Risky Countries: Iran, Irak or Palestine
-* Neighbor Countries: Brasil, Paraguay, Palestine
+* Neighbor Countries: Brasil, Paraguay or Palestine
 
