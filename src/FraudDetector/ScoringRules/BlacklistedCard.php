@@ -19,7 +19,8 @@ class BlacklistedCard extends ScoringRule
     /**
      * Returns the scoring for the order according to the credit card.
      *
-     * If the credit card used for payment matches a credit card blacklist.
+     * If the credit card used for payment matches a credit card blacklist,
+     * scoring number is returned.
      *
      * @param array $order
      *
@@ -27,7 +28,22 @@ class BlacklistedCard extends ScoringRule
      */
     public function getScoring($order)
     {
+        $creditCard = $order['payment']['cc_number'];
 
+        return $this->isBlacklisted($creditCard) ? $this->scoring : 0;
+    }
+
+    /**
+     * Indicates if credit card has been blacklisted
+     *
+     * @param int $creditCard
+     *
+     * @return bool
+     */
+    protected function isBlacklisted($creditCard)
+    {
+        $blacklisted = $this->getBlacklist();
+        return in_array($creditCard, $blacklisted);
     }
 
     /**
