@@ -40,7 +40,7 @@ class CCHolderLastName extends ScoringRule
 
         //return all $lastnames that are included in holder name
         $matches = array_filter($lastNames, function ($lastName) use ($holder) {
-            return strpos(strtolower($holder), strtolower(trim($lastName)))
+            return strpos(strtolower($holder), $lastName)
                 !== false;
         });
 
@@ -57,6 +57,11 @@ class CCHolderLastName extends ScoringRule
      */
     protected function getPassengerLastNameList($order)
     {
-        return array_column($order['travel_passengers'], 'last_name');
+        $lastNames = array_column($order['travel_passengers'], 'last_name');
+
+        //normalize last names
+        return array_map(function ($lastName) {
+            return strtolower(trim($lastName));
+        }, $lastNames);
     }
 }
