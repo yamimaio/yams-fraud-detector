@@ -207,7 +207,7 @@ class FraudDetectorTest extends TestCase
         $this->rules['CCHolderLastName'] = new CCHolderLastName(10);
         $this->rules['PaxLastName'] = new PaxLastName(20);
         $this->rules['RiskyCountry'] = new RiskyCountry(20);
-        $this->rules['DepartureTimeFrame'] = new DepartureTimeFrame(10, 86400);
+        $this->rules['DepartureTimeFrame'] = new DepartureTimeFrame(10, ['timeFrame' => 86400]);
 
         $this->detector = new FraudDetector(
             $this->config,
