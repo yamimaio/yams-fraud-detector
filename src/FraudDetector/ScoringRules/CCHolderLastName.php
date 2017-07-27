@@ -43,7 +43,7 @@ class CCHolderLastName extends ScoringRule
             return strpos(strtolower($holder), strtolower(trim($lastName)))
                 !== false;
         });
-        
+
         //if any match is found, no risk
         return count($matches) > 0 ? 0 : $this->scoring;
     }
