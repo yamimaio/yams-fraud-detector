@@ -8,18 +8,19 @@ PHP 7.0 or newer
 
 ### Setup ###
 1. cd to project root 
-1. git clone https://yamimaio@bitbucket.org/yamimaio/yams-fraud-detector.git .
-1. Navigate into your projectâ€™s root directory and execute the bash command _composer install_.
+1. ```git clone https://yamimaio@bitbucket.org/yamimaio/yams-fraud-detector.git .```
+1. Navigate into your project’s root directory and execute the bash command ```composer install```.
 1. Setup your localhost, Apache or Nginx to serve /app
 
 ### Available Routes ###
-Only routes accesible are
+Only routes accesible are:
+
 ### fraud/status ###
 Indicates if the given order is a fraud or not.
 Response:
-{
+```json{
     "status": false
-}
+}```
 
 Method: POST
 Content-type: application/json
@@ -39,7 +40,7 @@ Payload: Order information (see Order definition)
 Check it out on Heroku:  https://warm-plateau-67794.herokuapp.com/fraud/scoring
 
 ### Order Definition ###
-{
+```json{
   "transaction": {
     "order_id": "1234-A",
     "ordered_on": "2017-02-13 21:27:45",
@@ -92,10 +93,10 @@ Check it out on Heroku:  https://warm-plateau-67794.herokuapp.com/fraud/scoring
     }
   ]
 }
-
+```
 ### Fraud Detector Configuration ###
 
-Fraud Detector and scoring system can be configured in app/config/config.json file.
+Fraud Detector and scoring system can be configured in ```app/config/config.json``` file.
 
 #### Options ####
 * fraudScoring: Int. Scoring which will define an order is fraud. Default: 80.
