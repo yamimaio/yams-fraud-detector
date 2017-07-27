@@ -33,6 +33,30 @@ class CCHolderLastName extends ScoringRule
      */
     public function getScoring($order)
     {
+        //holder lastName comes together with first name, so we'll iterate
+        //over passengers lastnames and find in holder string
+        $holder = $order['payment']["cc_holder"];
+        $lastNames = $this->getPassengerLastNameList($order);
 
+        //return all $lastnames that are included in holder name
+        $matches = array_filter($lastNames, function ($lastName) use ($holder) {
+            return strpos(strtolower($holder), strtolower(trim($lastName)))
+                !== false;
+        });
+        
+        //if any match is found, no risk
+        return count($matches) > 0 ? 0 : $this->scoring;
+    }
+
+    /**
+     * Returns list of passengers lastnames.
+     *
+     * @param array $order Order to check
+     *
+     * @return array
+     */
+    protected function getPassengerLastNameList($order)
+    {
+        return array_column($order['travel_passengers'], 'last_name');
     }
 }
