@@ -7,6 +7,7 @@
 
 namespace FraudDetector\Actions;
 
+use FraudDetector\FraudDetector;
 use FraudDetector\Interfaces\ActionInterface;
 use Monolog\Logger as Logger;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -23,15 +24,20 @@ class FraudStatusAction implements ActionInterface
      * @var Logger
      */
     protected $logger;
+    /**
+     * @var FraudDetector
+     */
+    protected $detector;
 
     /**
      * FraudStatusAction constructor.
      *
-     * @param $logger
+     * @param array $config
      */
-    public function __construct(Logger $logger)
+    public function __construct($config)
     {
-        $this->logger = $logger;
+        $this->logger = $config['logger'];
+        $this->detector = $config['detector'];
     }
 
     /**
@@ -45,11 +51,17 @@ class FraudStatusAction implements ActionInterface
      */
     public function __invoke(Request $request, Response $response, array $args)
     {
-        $this->logger->addInfo("Fraud Status");
         $data = $request->getParsedBody();
 
-        $response->getBody()->write('Is this fraud?');
-        $response->getBody()->write(json_encode($data));
+        $status = $this->detector->isFraud($data);
+
+        $this->logger->addInfo("Fraud Status " . $status);
+
+        $body['status'] = $status;
+        //todo could add detail of scoring
+
+        $response->getBody()->write(json_encode($body));
+
         return $response->withHeader(
             'Content-Type',
             'application/json'

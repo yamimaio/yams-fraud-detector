@@ -69,8 +69,25 @@ class ContainerBuilder
     protected function addFraudStatusAction()
     {
         $this->container['FraudStatusAction'] = function ($c) {
-            return new FraudStatusAction($c['logger']);
+            $detector = $this->getFraudDetector();
+            return new FraudStatusAction([
+                'logger' => $c['logger'],
+                'detector' => $detector
+            ]);
         };
+    }
+
+    /**
+     * Returns a FraudDetector
+     *
+     * @return \FraudDetector\FraudDetector
+     */
+    protected function getFraudDetector()
+    {
+        $factory = new RuleFactory();
+        $builder = new FraudDetectorBuilder($factory);
+        $config = $this->container->get('settings')['detectorConfig'];
+        return $builder->getFraudDetector($config);
     }
 
     /**
@@ -86,16 +103,5 @@ class ContainerBuilder
                 'detector' => $detector
             ]);
         };
-    }
-
-    /**
-     * @return \FraudDetector\FraudDetector
-     */
-    protected function getFraudDetector()
-    {
-        $factory = new RuleFactory();
-        $builder = new FraudDetectorBuilder($factory);
-        $config = $this->container->get('settings')['detectorConfig'];
-        return $builder->getFraudDetector($config);
     }
 }

@@ -33,7 +33,7 @@ class FraudScoringAction implements ActionInterface
     /**
      * FraudScoringAction constructor.
      *
-     * @param $logger
+     * @param array $config
      */
     public function __construct($config)
     {
