@@ -3,8 +3,8 @@
 Yam's Fraud Detector
 
 ### System Requirements ###
-Web server with URL rewriting
-PHP 7.0 or newer
+* Web server with URL rewriting
+* PHP 7.0 or newer
 
 ### Setup ###
 1. cd to project root 
@@ -35,7 +35,8 @@ Response:
 ```javascript
 {
     "scoring": 70
-}```
+}
+```
 
 Method: POST
 Content-type: application/json
