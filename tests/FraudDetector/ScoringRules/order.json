@@ -1,7 +1,7 @@
 {
   "transaction": {
     "order_id": "1234-A",
-    "ordered_on": "2017-02-13T21:27:45.000Z",
+    "ordered_on": "2017-02-13 21:27:45",
     "order_total": 122.23,
     "order_currency": "USD",
     "user_id": "22",

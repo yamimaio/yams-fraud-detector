@@ -34,7 +34,13 @@ class DepartureTimeFrame extends ScoringRule
      */
     public function getScoring($order)
     {
+        $departureTime = strtotime($order['travel_ticket']['depart_on']);
+        $orderTime = strtotime($order['transaction']['ordered_on']);
+        $differenceInSeconds = $departureTime - $orderTime;
 
+        var_dump($orderTime, $departureTime, $differenceInSeconds);
+        return $differenceInSeconds < $this->timeFrame
+            ? $this->scoring : 0;
     }
 
     /**
