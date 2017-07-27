@@ -30,9 +30,9 @@ Check it out on Heroku: https://warm-plateau-67794.herokuapp.com/fraud/status
 ### fraud/scoring ###
 Returns the fraud scoring for the given order.
 Response:
-{
+```javascript{
     "scoring": 70
-}
+}```
 
 Method: POST
 Content-type: application/json
@@ -40,7 +40,8 @@ Payload: Order information (see Order definition)
 Check it out on Heroku:  https://warm-plateau-67794.herokuapp.com/fraud/scoring
 
 ### Order Definition ###
-```javascript{
+```javascript
+{
   "transaction": {
     "order_id": "1234-A",
     "ordered_on": "2017-02-13 21:27:45",
@@ -117,3 +118,10 @@ For each rule you choose as maxScoringRule the scoring level will be automatical
 * PaxLastName: None of the passengers share last name.
 * RiskyCountry: Destiny country is marked as risky. This can happen under 2 circumstances. a) the country is marked as risky b) the country limits with the departure country. If both cases are met (limit country is also risky), scoring assigned is doubled.
 * BlacklistedCard: Credit Card it blacklisted as stolen. This rule defaults to a maxScoringRule. 
+
+#### Try it out ####
+If you wish to test rules you can use:
+* Blacklisted credit card: 5665777755559999
+* Risky Countries: Iran, Irak or Palestine
+* Neighbor Countries: Brasil, Paraguay, Palestine
+
