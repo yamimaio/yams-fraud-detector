@@ -37,20 +37,58 @@ class RiskyCountry extends ScoringRule
      */
     public function getScoring($order)
     {
+        $country = $order['travel_ticket']['to_country'];
+        $origin = $order['travel_ticket']['from_country'];
 
+        $scoring = 0;
+        $scoring += $this->isNeighborCountry($country, $origin) ? $this->scoring
+            : 0;
+        $scoring += $this->isRiskyCountry($country) ? $this->scoring : 0;
+
+        return $scoring;
     }
 
 
     /**
+     * Indicates if given country limits with country of origin.
+     *
+     * @param string $country
+     * @param string $origin
+     *
+     * @return bool
+     */
+    protected function isNeighborCountry($country, $origin)
+    {
+        $neighbors = $this->getNeighborCountries($origin);
+        return in_array($country, $neighbors);
+    }
+
+    /**
      * Returns the list of destiny neighbor countries
+     *
+     * @param string $origin Country of departure.
      *
      * @todo Change method to load neighbor countries list from a service
      *
-     * return array
+     * @return array
      */
-    protected function getNeighborCountries()
+    protected function getNeighborCountries($origin)
     {
-        return ['Iran', 'Irak', 'Palestine'];
+        return ['Brasil', 'Paraguay', 'Palestine'];
+    }
+
+    /**
+     * Indicates if given country limits with country of origin.
+     *
+     * @param string $country
+     * @param string $origin
+     *
+     * @return bool
+     */
+    protected function isRiskyCountry($country)
+    {
+        $riskyCountries = $this->getRiskyCountries();
+        return in_array($country, $riskyCountries);
     }
 
     /**

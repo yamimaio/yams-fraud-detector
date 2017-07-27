@@ -23,17 +23,29 @@ class RiskyCountryTest extends ScoringRuleTestCase
      */
     public function testGetScoringReturnsScoringNumberWhenDestinyIsRiskyCountry()
     {
-        //get risky countries
-        $riskyCountriesMethod = $this->getMethod('getRiskyCountries');
-        $riskyCountries = $riskyCountriesMethod->invokeArgs($this->rule, []);
-        //get any risky country element
-        $riskyCountry = $riskyCountries[0];
-        //modify order to have risky country
-        $this->order['travel_ticket']['to_country'] = $riskyCountry;
+        // Create a mock for the Rule class,
+        // only mock the getRiskyCountries() and getNeighborCountries methods
+        $riskyRule = $this->getMockBuilder(RiskyCountry::class)
+            ->setMethods(['getRiskyCountries', 'getNeighborCountries'])
+            ->getMock();
+
+        //modifiy class so that risky countries includes neighbor country
+        // Set up the expectation for the getRiskyCountries()
+        $riskyRule->expects($this->once())
+            ->method('getRiskyCountries')
+            ->willReturn([$this->order['travel_ticket']['to_country']]);
+
+        // Set up the expectation for the getNeighborCountries()
+        $riskyRule->expects($this->once())
+            ->method('getNeighborCountries')
+            ->with($this->equalTo($this->order['travel_ticket']['from_country']))
+            ->willReturn([]);
+
+        $riskyRule->setRuleScoring($this->scoring);
 
         $this->assertSame(
             $this->scoring,
-            $this->rule->getScoring($this->order)
+            $riskyRule->getScoring($this->order)
         );
     }
 
@@ -63,7 +75,7 @@ class RiskyCountryTest extends ScoringRuleTestCase
         $neighborCountriesMethod = $this->getMethod('getNeighborCountries');
         $neighborCountries = $neighborCountriesMethod->invokeArgs(
             $this->rule,
-            []
+            [$this->order['travel_ticket']['from_country']]
         );
         //get any neighbor country element
         $neighborCountry = $neighborCountries[0];
@@ -106,7 +118,7 @@ class RiskyCountryTest extends ScoringRuleTestCase
         // Set up the expectation for the getRiskyCountries()
         $riskyRule->expects($this->once())
             ->method('getRiskyCountries')
-            ->with($this->equalTo([$neighborCountry]));
+            ->willReturn([$neighborCountry]);
 
         $riskyRule->setRuleScoring($this->scoring);
 
