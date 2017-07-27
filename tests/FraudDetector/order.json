@@ -1,0 +1,53 @@
+{
+  "transaction": {
+    "order_id": "1234-A",
+    "ordered_on": "2017-02-13 21:27:45",
+    "order_total": 122.23,
+    "order_currency": "USD",
+    "user_id": "22",
+    "user_first_name": "Yamila",
+    "user_last_name": "Maio"
+  },
+  "billing": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "address1": "123 Main Street",
+    "company": "Acme Inc",
+    "city": "New York City",
+    "region": "NY",
+    "postal_code": "10001",
+    "country": "US",
+    "email": "email@acme.com",
+    "phone": "212-289-1293"
+  },
+  "payment": {
+    "method": "credit_card",
+    "type": "mc",
+    "cc_holder": "Yamila Maio",
+    "cc_number": "4567455645787896",
+    "exp_date": "0221",
+    "payment_status": "paid"
+  },
+  "travel_ticket": {
+    "trip_currency": "USD",
+    "method": "plane",
+    "from_code": "LAXTUF2",
+    "from_name": "5201 E Olympic Blvd E",
+    "from_city": "Los Angeles",
+    "from_country": "USA",
+    "depart_on": "2017-05-15 10:00:00",
+    "to_code": "LASTUF",
+    "to_name": "99 S Martin L King Blvd",
+    "return_on:": "2017-05-15 15:05:00",
+    "to_city": "Las Vegas",
+    "to_country": "USA",
+    "trip_type": "one-way",
+    "passengers": 1
+  },
+  "travel_passengers": [
+    {
+      "first_name": "John",
+      "last_name": "Smith"
+    }
+  ]
+}
