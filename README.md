@@ -18,7 +18,7 @@ Only routes accesible are:
 ### fraud/status ###
 Indicates if the given order is a fraud or not.
 Response:
-```json{
+```javascript{
     "status": false
 }```
 
@@ -40,7 +40,7 @@ Payload: Order information (see Order definition)
 Check it out on Heroku:  https://warm-plateau-67794.herokuapp.com/fraud/scoring
 
 ### Order Definition ###
-```json{
+```javascript{
   "transaction": {
     "order_id": "1234-A",
     "ordered_on": "2017-02-13 21:27:45",
