@@ -27,10 +27,10 @@ class DepartureTimeFrame extends ScoringRule
      * @param int $scoring
      * @param int $acceptedTimeFrame
      */
-    public function __construct(int $scoring, int $acceptedTimeFrame)
+    public function __construct(int $scoring, array $config)
     {
         parent::__construct($scoring);
-        $this->timeFrame = $acceptedTimeFrame;
+        $this->timeFrame = $config['timeFrame'];
     }
 
     /**

@@ -14,6 +14,16 @@ require_once '../vendor/autoload.php';
 //temporary config options
 $config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
+$config['detectorConfig']['fraudScoring'] = 80;
+$config['detectorConfig']['maxScoring'] = 100;
+$config['detectorConfig']['rules'] = [
+    ['name' => 'CCHolderLastName'],
+    ['name' => 'DepartureTimeFrame', 'timeFrame' => 86400],
+    ['name' => 'PaxLastName'],
+    ['name' => 'RiskyCountry'],
+];
+$config['detectorConfig']['maxScoringRules'] = [['name' => 'BlacklistedCard']];
+
 
 $app = new \Slim\App(["settings" => $config]);
 

@@ -7,8 +7,9 @@
 
 namespace FraudDetector\Builders;
 
-use FraudDetector\Actions\FraudScoringAction as FraudScoreAction;
+use FraudDetector\Actions\FraudScoringAction;
 use FraudDetector\Actions\FraudStatusAction as FraudStatusAction;
+use FraudDetector\Factories\RuleFactory;
 use Monolog\Handler\StreamHandler as StreamHandler;
 use Monolog\Logger as Logger;
 use Psr\Container\ContainerInterface as Container;
@@ -74,11 +75,27 @@ class ContainerBuilder
 
     /**
      * Adds FraudScoringAction to container
+     *
      */
     protected function addFraudScoreAction()
     {
         $this->container['FraudScoringAction'] = function ($c) {
-            return new FraudScoringAction($c['logger']);
+            $detector = $this->getFraudDetector();
+            return new FraudScoringAction([
+                'logger' => $c['logger'],
+                'detector' => $detector
+            ]);
         };
+    }
+
+    /**
+     * @return \FraudDetector\FraudDetector
+     */
+    protected function getFraudDetector()
+    {
+        $factory = new RuleFactory();
+        $builder = new FraudDetectorBuilder($factory);
+        $config = $this->container->get('settings')['detectorConfig'];
+        return $builder->getFraudDetector($config);
     }
 }
