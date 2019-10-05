@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "0fbca27e-4ba4-4f43-85d1-1a0f6a288ddb",
+		"name": "Yams Fraud Detector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Fraud Scoring",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"transaction\": {\r\n    \"order_id\": \"1234-A\",\r\n    \"ordered_on\": \"2017-02-13 21:27:45\",\r\n    \"order_total\": 122.23,\r\n    \"order_currency\": \"USD\",\r\n    \"user_id\": \"22\",\r\n    \"user_first_name\": \"Yamila\",\r\n    \"user_last_name\": \"Maio\"\r\n  },\r\n  \"billing\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Smith\",\r\n    \"address1\": \"123 Main Street\",\r\n    \"company\": \"Acme Inc\",\r\n    \"city\": \"New York City\",\r\n    \"region\": \"NY\",\r\n    \"postal_code\": \"10001\",\r\n    \"country\": \"US\",\r\n    \"email\": \"email@acme.com\",\r\n    \"phone\": \"212-289-1293\"\r\n  },\r\n  \"payment\": {\r\n    \"method\": \"credit_card\",\r\n    \"type\": \"mc\",\r\n    \"cc_holder\": \"Yamila Maio\",\r\n    \"cc_number\": \"56657577655559999\",\r\n    \"exp_date\": \"0221\",\r\n    \"payment_status\": \"paid\"\r\n  },\r\n  \"travel_ticket\": {\r\n    \"trip_currency\": \"USD\",\r\n    \"method\": \"plane\",\r\n    \"from_code\": \"LAXTUF2\",\r\n    \"from_name\": \"5201 E Olympic Blvd E\",\r\n    \"from_city\": \"Los Angeles\",\r\n    \"from_country\": \"USA\",\r\n    \"depart_on\": \"2017-05-15 10:00:00\",\r\n    \"to_code\": \"LASTUF\",\r\n    \"to_name\": \"99 S Martin L King Blvd\",\r\n    \"return_on:\": \"2017-05-15 15:05:00\",\r\n    \"to_city\": \"Las Vegas\",\r\n    \"to_country\": \"USA\",\r\n    \"trip_type\": \"one-way\",\r\n    \"passengers\": 1\r\n  },\r\n  \"travel_passengers\": [\r\n    {\r\n      \"first_name\": \"John\",\r\n      \"last_name\": \"Smith\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8088/fraud/scoring",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"fraud",
+						"scoring"
+					]
+				},
+				"description": "### fraud/scoring ###\r\nReturns the fraud scoring for the given order.\r\nResponse:\r\n```javascript\r\n{\r\n    \"scoring\": 70\r\n}\r\n```\r\n\r\nMethod: POST\r\nContent-type: application/json\r\nPayload: Order information (see Order definition)\r\nCheck it out on Heroku:  https://warm-plateau-67794.herokuapp.com/fraud/scoring"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Fraud Status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"transaction\": {\r\n    \"order_id\": \"1234-A\",\r\n    \"ordered_on\": \"2017-02-13 21:27:45\",\r\n    \"order_total\": 122.23,\r\n    \"order_currency\": \"USD\",\r\n    \"user_id\": \"22\",\r\n    \"user_first_name\": \"Yamila\",\r\n    \"user_last_name\": \"Maio\"\r\n  },\r\n  \"billing\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Smith\",\r\n    \"address1\": \"123 Main Street\",\r\n    \"company\": \"Acme Inc\",\r\n    \"city\": \"New York City\",\r\n    \"region\": \"NY\",\r\n    \"postal_code\": \"10001\",\r\n    \"country\": \"US\",\r\n    \"email\": \"email@acme.com\",\r\n    \"phone\": \"212-289-1293\"\r\n  },\r\n  \"payment\": {\r\n    \"method\": \"credit_card\",\r\n    \"type\": \"mc\",\r\n    \"cc_holder\": \"Yamila Maio\",\r\n    \"cc_number\": \"56657577655559999\",\r\n    \"exp_date\": \"0221\",\r\n    \"payment_status\": \"paid\"\r\n  },\r\n  \"travel_ticket\": {\r\n    \"trip_currency\": \"USD\",\r\n    \"method\": \"plane\",\r\n    \"from_code\": \"LAXTUF2\",\r\n    \"from_name\": \"5201 E Olympic Blvd E\",\r\n    \"from_city\": \"Los Angeles\",\r\n    \"from_country\": \"USA\",\r\n    \"depart_on\": \"2017-05-15 10:00:00\",\r\n    \"to_code\": \"LASTUF\",\r\n    \"to_name\": \"99 S Martin L King Blvd\",\r\n    \"return_on:\": \"2017-05-15 15:05:00\",\r\n    \"to_city\": \"Las Vegas\",\r\n    \"to_country\": \"USA\",\r\n    \"trip_type\": \"one-way\",\r\n    \"passengers\": 1\r\n  },\r\n  \"travel_passengers\": [\r\n    {\r\n      \"first_name\": \"John\",\r\n      \"last_name\": \"Smith\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8088/fraud/status",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"fraud",
+						"status"
+					]
+				},
+				"description": "### fraud/status ###\r\nIndicates if the given order is a fraud or not.\r\nResponse:\r\n```javascript\r\n{\r\n    \"status\": false\r\n}\r\n```\r\n\r\nMethod: POST\r\nContent-type: application/json\r\nPayload: Order information (see Order definition)\r\nCheck it out on Heroku: https://warm-plateau-67794.herokuapp.com/fraud/status"
+			},
+			"response": []
+		}
+	]
+}
