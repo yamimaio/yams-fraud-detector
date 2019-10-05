@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  api:
+    build: .
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 8088:80
