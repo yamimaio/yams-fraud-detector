@@ -111,16 +111,16 @@ Fraud Detector and scoring system can be configured in ```app/config/config.json
 
 
 #### Rules ####
-The following rules are available (for either standar or max scoring rule. You may use them as you wish).
+The following rules are available (for either standard or max scoring rule. You may use them as you wish).
 
 For each rule you choose as standard you may indicate the property "scoring" which will set the scoring level this rule adds if broken. If scoring is not set it defaults to 10.
 
 For each rule you choose as maxScoringRule the scoring level will be automatically set to whatever you have configured as maxScoring.
 
 * CCHolderLastName: Credit Card Holder last name is not found in passengers last names. 
-* DepartureTimeFrame: Date/Time of order is less than a given interval away from Date/Time of departure. For this rule you must add the property "timeFrame" (in seconds). TimeFrame will be the minimum interval of time from order request to departure that is accetable as not risky.
+* DepartureTimeFrame: Date/Time of order is less than a given interval away from Date/Time of departure. For this rule you must add the property "timeFrame" (in seconds). TimeFrame will be the minimum interval of time from order request to departure that is acceptable as not risky.
 * PaxLastName: None of the passengers share last name.
-* RiskyCountry: Destiny country is marked as risky. This can happen under 2 circumstances. a) the country is marked as risky b) the country limits with the departure country. If both cases are met (limit country is also risky), scoring assigned is doubled.
+* RiskyCountry: Destination country is marked as risky. This can happen under 2 circumstances. a) the country is marked as risky b) the country limits with the departure country. If both cases are met (limit country is also risky), scoring assigned is doubled.
 * BlacklistedCard: Credit Card it blacklisted as stolen. This rule defaults to a maxScoringRule. 
 
 #### Try it out ####
