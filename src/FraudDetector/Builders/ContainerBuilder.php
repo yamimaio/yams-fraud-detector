@@ -56,7 +56,7 @@ class ContainerBuilder
     {
         $this->container['logger'] = function ($c) {
             $logger = new Logger('fraud_logger');
-            $file_handler = new StreamHandler("../logs/app.log");
+            $file_handler = new StreamHandler('php://stderr');
             $logger->pushHandler($file_handler);
             return $logger;
         };
