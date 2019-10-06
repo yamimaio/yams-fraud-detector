@@ -4,7 +4,7 @@ Yam's Fraud Detector
 
 ### System Requirements ###
 * Web server with URL rewriting
-* PHP 7.0 or newer
+* PHP 7.3 or newer
 
 ### Setup Without Docker ###
 1. cd to project root 
@@ -18,6 +18,9 @@ Yam's Fraud Detector
 1. Navigate into your project’s root directory and execute the bash command ```docker-compose up```.
 1. You're ready to go on ```http://localhost:8088```
 1. Import postman collection available in ```docs``` for quick startup using the API
+
+#### Tests ####
+Run tests with ```docker-compose run api php /app/vendor/phpunit/phpunit/phpunit -c /app/tests```
 
 ### Available Routes ###
 Only routes accesible are:
@@ -136,4 +139,3 @@ If you wish to test rules you can use:
 * Blacklisted credit card: 5665777755559999
 * Risky Countries: Iran, Irak or Palestine
 * Neighbor Countries: Brasil, Paraguay or Palestine
-
