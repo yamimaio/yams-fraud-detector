@@ -35,17 +35,14 @@ class RiskyCountry extends ScoringRule
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         $country = $order['travel_ticket']['to_country'];
         $origin = $order['travel_ticket']['from_country'];
 
         $scoring = 0;
-        $scoring += $this->isNeighborCountry($country, $origin) ? $this->scoring
-            : 0;
-        $scoring += $this->isRiskyCountry($country) ? $this->scoring : 0;
-
-        return $scoring;
+        $scoring += $this->isNeighborCountry($country, $origin) ? $this->scoring : 0;
+        return $scoring + ($this->isRiskyCountry($country) ? $this->scoring : 0);
     }
 
 
@@ -57,10 +54,10 @@ class RiskyCountry extends ScoringRule
      *
      * @return bool
      */
-    protected function isNeighborCountry($country, $origin)
+    protected function isNeighborCountry($country, $origin): bool
     {
         $neighbors = $this->getNeighborCountries($origin);
-        return in_array($country, $neighbors);
+        return in_array($country, $neighbors, true);
     }
 
     /**
@@ -72,7 +69,7 @@ class RiskyCountry extends ScoringRule
      *
      * @return array
      */
-    protected function getNeighborCountries($origin)
+    protected function getNeighborCountries($origin): array
     {
         return ['Brasil', 'Paraguay', 'Palestine'];
     }
@@ -81,14 +78,13 @@ class RiskyCountry extends ScoringRule
      * Indicates if given country limits with country of origin.
      *
      * @param string $country
-     * @param string $origin
      *
      * @return bool
      */
-    protected function isRiskyCountry($country)
+    protected function isRiskyCountry($country): bool
     {
         $riskyCountries = $this->getRiskyCountries();
-        return in_array($country, $riskyCountries);
+        return in_array($country, $riskyCountries, true);
     }
 
     /**
@@ -98,7 +94,7 @@ class RiskyCountry extends ScoringRule
      *
      * return array
      */
-    protected function getRiskyCountries()
+    protected function getRiskyCountries(): array
     {
         return ['Iran', 'Irak', 'Palestine'];
     }

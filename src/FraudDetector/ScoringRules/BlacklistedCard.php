@@ -7,7 +7,7 @@
 
 namespace FraudDetector\ScoringRules;
 
-use FraudDetector\ScoringRules\ScoringRule as ScoringRule;
+use FraudDetector\ScoringRules\ScoringRule;
 
 /**
  * Rule to get scoring for an order checking against a blacklist of credit cards
@@ -26,7 +26,7 @@ class BlacklistedCard extends ScoringRule
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         $creditCard = $order['payment']['cc_number'];
 
@@ -43,7 +43,7 @@ class BlacklistedCard extends ScoringRule
     protected function isBlacklisted($creditCard)
     {
         $blacklisted = $this->getBlacklist();
-        return in_array($creditCard, $blacklisted);
+        return in_array($creditCard, $blacklisted, true);
     }
 
     /**
@@ -53,7 +53,7 @@ class BlacklistedCard extends ScoringRule
      *
      * return array
      */
-    protected function getBlacklist()
+    protected function getBlacklist(): array
     {
         return ['5665777755559999'];
     }

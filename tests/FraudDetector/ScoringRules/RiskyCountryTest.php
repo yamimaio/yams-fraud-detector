@@ -8,7 +8,6 @@
 namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\RiskyCountry;
-use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
 
 /**
  * Test for Class RiskyCountryTest
@@ -133,7 +132,7 @@ class RiskyCountryTest extends ScoringRuleTestCase
     /**
      * Setup Test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->scoring = 20;

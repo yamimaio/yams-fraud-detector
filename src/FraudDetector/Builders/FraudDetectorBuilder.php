@@ -44,7 +44,7 @@ class FraudDetectorBuilder
     /**
      * @param RuleFactory $factory
      */
-    public function setFactory(RuleFactory $factory)
+    public function setFactory(RuleFactory $factory): void
     {
         $this->factory = $factory;
     }
@@ -72,7 +72,7 @@ class FraudDetectorBuilder
      *
      * @return FraudDetector
      */
-    public function getFraudDetector(array $config)
+    public function getFraudDetector(array $config): FraudDetector
     {
         $detectorConfig['fraudScoring'] = $config['fraudScoring'];
         $detectorConfig['maxScoring'] = $config['maxScoring'];
@@ -101,7 +101,7 @@ class FraudDetectorBuilder
      *
      * @return array;
      */
-    protected function getRules(array $rulesConfig, $maxScoring = false)
+    protected function getRules(array $rulesConfig, $maxScoring = false): array
     {
         $rules = [];
         foreach ($rulesConfig as $ruleConfig) {

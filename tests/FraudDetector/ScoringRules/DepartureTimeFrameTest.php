@@ -8,7 +8,7 @@
 namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\DepartureTimeFrame;
-use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
+use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase;
 
 /**
  * Test for Class DepartureTimeFrameTest
@@ -21,8 +21,7 @@ class DepartureTimeFrameTest extends ScoringRuleTestCase
      * Assert that when time frame between order and departure is less than
      * accepted time frame, scoring number is returned.
      */
-    public function testGetScoringReturnsScoringNumberWhenTimeFrameLessThanAccepted(
-    )
+    public function testGetScoringReturnsScoringNumberWhenTimeFrameLessThanAccepted()
     {
         //modify order to have less than accepted time frame
         $orderDate = new \DateTime($this->order['transaction']['ordered_on']);
@@ -30,8 +29,7 @@ class DepartureTimeFrameTest extends ScoringRuleTestCase
             $this->rule->getAcceptedTimeFrame() - 1000 . ' seconds'
         );
         $departureDate = $orderDate->add($interval);
-        $this->order['travel_ticket']['depart_on']
-            = $departureDate->format("Y-m-d H:i:s");
+        $this->order['travel_ticket']['depart_on'] = $departureDate->format('Y-m-d H:i:s');
 
         $this->assertSame(
             $this->scoring,
@@ -51,8 +49,7 @@ class DepartureTimeFrameTest extends ScoringRuleTestCase
             $this->rule->getAcceptedTimeFrame() + 1000 . ' seconds'
         );
         $departureDate = $orderDate->add($interval);
-        $this->order['travel_ticket']['depart_on']
-            = $departureDate->format("Y-m-d H:i:s");
+        $this->order['travel_ticket']['depart_on'] = $departureDate->format('Y-m-d H:i:s');
 
         $this->assertSame(
             0,
@@ -60,11 +57,10 @@ class DepartureTimeFrameTest extends ScoringRuleTestCase
         );
     }
 
-
     /**
      * Setup Test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->scoring = 20;

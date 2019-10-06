@@ -7,7 +7,7 @@
 
 namespace FraudDetector\ScoringRules;
 
-use FraudDetector\ScoringRules\ScoringRule as ScoringRule;
+use FraudDetector\ScoringRules\ScoringRule;
 
 /**
  * Rule to get scoring for an order checking last name of all passengers.
@@ -28,7 +28,7 @@ class PaxLastName extends ScoringRule
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         //can't evaluate is only one passenger
         if ($this->isOnlyPassenger($order)) {
@@ -41,7 +41,7 @@ class PaxLastName extends ScoringRule
         $lastNameCount = array_count_values($lastNames);
 
         //check if any lastName is repeated
-        $matches = array_filter($lastNameCount, function ($count) {
+        $matches = array_filter($lastNameCount, static function ($count) {
             return $count > 1;
         });
 
@@ -56,9 +56,9 @@ class PaxLastName extends ScoringRule
      *
      * @return bool
      */
-    protected function isOnlyPassenger($order)
+    protected function isOnlyPassenger($order): bool
     {
-        return $order['travel_ticket']['passengers'] == 1;
+        return $order['travel_ticket']['passengers'] === 1;
     }
 
     /**
@@ -68,11 +68,11 @@ class PaxLastName extends ScoringRule
      *
      * @return array
      */
-    protected function getPassengerLastNameList($order)
+    protected function getPassengerLastNameList($order): array
     {
         $lastNames = array_column($order['travel_passengers'], 'last_name');
         //normalize last names
-        return array_map(function ($lastName) {
+        return array_map(static function ($lastName) {
             return strtolower(trim($lastName));
         }, $lastNames);
     }

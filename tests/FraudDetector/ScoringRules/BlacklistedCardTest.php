@@ -8,7 +8,6 @@
 namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\BlacklistedCard;
-use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
 
 /**
  * Test for Class BlacklistedCard
@@ -41,7 +40,7 @@ class BlacklistedCardTest extends ScoringRuleTestCase
      * Assert that when credit card in number is not in blacklist, returned
      * score is 0.
      */
-    public function testGetScoringReturnsZeroWhenCardIsNotBlackListed()
+    public function testGetScoringReturnsZeroWhenCardIsNotBlackListed(): void
     {
         $this->assertSame(
             0,
@@ -52,7 +51,7 @@ class BlacklistedCardTest extends ScoringRuleTestCase
     /**
      * Setup Test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->scoring = 100;

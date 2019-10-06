@@ -7,7 +7,7 @@
 
 namespace FraudDetector\ScoringRules;
 
-use FraudDetector\ScoringRules\ScoringRule as ScoringRule;
+use FraudDetector\ScoringRules\ScoringRule;
 
 /**
  * Rule to get scoring for an order checking the credit card holder's lastname
@@ -31,7 +31,7 @@ class CCHolderLastName extends ScoringRule
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         //holder lastName comes together with first name, so we'll iterate
         //over passengers lastnames and find in holder string
@@ -39,9 +39,8 @@ class CCHolderLastName extends ScoringRule
         $lastNames = $this->getPassengerLastNameList($order);
 
         //return all $lastnames that are included in holder name
-        $matches = array_filter($lastNames, function ($lastName) use ($holder) {
-            return strpos(strtolower($holder), $lastName)
-                !== false;
+        $matches = array_filter($lastNames, static function ($lastName) use ($holder) {
+            return stripos($holder, $lastName) !== false;
         });
 
         //if any match is found, no risk
@@ -55,12 +54,12 @@ class CCHolderLastName extends ScoringRule
      *
      * @return array
      */
-    protected function getPassengerLastNameList($order)
+    protected function getPassengerLastNameList($order): array
     {
         $lastNames = array_column($order['travel_passengers'], 'last_name');
 
         //normalize last names
-        return array_map(function ($lastName) {
+        return array_map(static function ($lastName) {
             return strtolower(trim($lastName));
         }, $lastNames);
     }

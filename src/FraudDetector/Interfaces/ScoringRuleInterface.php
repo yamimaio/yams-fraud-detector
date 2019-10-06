@@ -22,14 +22,14 @@ interface ScoringRuleInterface
      *
      * @return int
      */
-    public function getScoring($order);
+    public function getScoring($order): int;
 
     /**
      * Returns the scoring the rule adds if fraud suspected
      *
      * @return int
      */
-    public function getRuleScoring();
+    public function getRuleScoring(): int;
 
     /**
      * Sets the scoring the rule adds if fraud suspected
@@ -38,5 +38,5 @@ interface ScoringRuleInterface
      *
      * @return void
      */
-    public function setRuleScoring($scoring);
+    public function setRuleScoring($scoring): void;
 }

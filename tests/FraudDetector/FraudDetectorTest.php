@@ -48,7 +48,8 @@ class FraudDetectorTest extends TestCase
      */
     protected $config;
 
-    public function testIsFraudReturnsTrueWhenOverFraudLevelScoring()
+    
+    public function testIsFraudReturnsTrueWhenOverFraudLevelScoring(): void
     {
         //get blacklist
         $blacklistMethod = $this->getMethod(
@@ -85,7 +86,7 @@ class FraudDetectorTest extends TestCase
         return $method;
     }
 
-    public function testIsFraudReturnsFalseWhenUnderFraudLevelScoring()
+    public function testIsFraudReturnsFalseWhenUnderFraudLevelScoring(): void
     {
         $this->assertFalse(
             $this->detector->isFraud($this->order)
@@ -114,7 +115,7 @@ class FraudDetectorTest extends TestCase
         );
     }
 
-    public function testGetScoringReturnsMaxScoringWhenScoringOverMax()
+    public function testGetScoringReturnsMaxScoringWhenScoringOverMax(): void
     {
         $this->detector->setMaxScoringRules([]);
 
@@ -141,7 +142,7 @@ class FraudDetectorTest extends TestCase
         );
     }
 
-    public function testGetScoringReturnsCorrectValue()
+    public function testGetScoringReturnsCorrectValue(): void
     {
         $this->detector->setMaxScoringRules([]);
 
@@ -149,8 +150,8 @@ class FraudDetectorTest extends TestCase
 
         $this->order['travel_ticket']['passengers'] = 3;
 
-        $this->order['transaction']['ordered_on'] = "2017-05-15 10:30:00";
-        $this->order['travel_ticket']['depart_on'] = "2017-05-15 10:00:00";
+        $this->order['transaction']['ordered_on'] = '2017-05-15 10:30:00';
+        $this->order['travel_ticket']['depart_on'] = '2017-05-15 10:00:00';
 
         $this->order['travel_passengers'][] = [
             'first_name' => 'Yamila',
@@ -169,8 +170,11 @@ class FraudDetectorTest extends TestCase
      * Test setters and getters
      *
      * @dataProvider attributesProvider
+     *
+     * @param $property
+     * @param $value
      */
-    public function testSettersAndGetters($property, $value)
+    public function testSettersAndGetters($property, $value): void
     {
         $setter = 'set' . $property;
         $getter = 'get' . $property;
@@ -184,7 +188,7 @@ class FraudDetectorTest extends TestCase
      * Attributes provider
      * @return array
      */
-    public function attributesProvider()
+    public function attributesProvider(): array
     {
         return [
             ['maxScoringRules', []],
@@ -194,7 +198,7 @@ class FraudDetectorTest extends TestCase
         ];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $order = file_get_contents(__DIR__ . '/order.json');

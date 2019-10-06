@@ -8,7 +8,6 @@
 namespace FraudDetector\Tests\ScoringRules;
 
 use FraudDetector\ScoringRules\CCHolderLastName;
-use FraudDetector\Tests\ScoringRules\ScoringRuleTestCase as ScoringRuleTestCase;
 
 /**
  * Test for Class CCHolderLastNameTest
@@ -29,8 +28,8 @@ class CCHolderLastNameTest extends ScoringRuleTestCase
         // (holder musn't match any of them)
         $this->order['travel_ticket']['passengers'] = 2;
         $this->order['travel_passengers'][] = [
-            "first_name" => "John",
-            "last_name" => "NotSmith"
+            'first_name' => 'John',
+            'last_name' => 'NotSmith'
         ];
 
         $this->assertSame(
@@ -46,14 +45,16 @@ class CCHolderLastNameTest extends ScoringRuleTestCase
      * This must be case insensitive
      *
      * @dataProvider lastnameProvider
+     *
+     * @param $lastname
      */
     public function testGetScoringReturnsZeroWhenLastNamesMatch($lastname)
     {
         //modify order to have matching lastnames for passengers and holder
         $this->order['travel_ticket']['passengers'] = 2;
         $this->order['travel_passengers'][] = [
-            "first_name" => "John",
-            "last_name" => $lastname
+            'first_name' => 'John',
+            'last_name' => $lastname
         ];
 
         $this->assertSame(
@@ -67,7 +68,7 @@ class CCHolderLastNameTest extends ScoringRuleTestCase
      *
      * @return array
      */
-    public function lastnameProvider()
+    public function lastnameProvider(): array
     {
         return [
             ['MAIO'],
@@ -80,7 +81,7 @@ class CCHolderLastNameTest extends ScoringRuleTestCase
     /**
      * Setup Test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->scoring = 10;

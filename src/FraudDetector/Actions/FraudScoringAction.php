@@ -56,7 +56,7 @@ class FraudScoringAction implements ActionInterface
 
         $scoring = $this->detector->getScoring($data);
 
-        $this->logger->addInfo("Fraud Scoring " . $scoring);
+        $this->logger->addInfo('Fraud Scoring ' . $scoring);
 
         $body['scoring'] = $scoring;
         //todo could add detail of score per rule

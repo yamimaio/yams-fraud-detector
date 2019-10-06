@@ -35,7 +35,7 @@ class ScoringRuleTestCase extends TestCase
     /**
      * Test Scoring number setter and getter
      */
-    public function testSetScoringSetsGivenScoring()
+    public function testSetScoringSetsGivenScoring(): void
     {
         $this->rule->setRuleScoring($this->scoring);
 
@@ -45,7 +45,7 @@ class ScoringRuleTestCase extends TestCase
     /**
      * Setup Test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $order = file_get_contents(__DIR__ . '/order.json');
         $this->order = json_decode($order, true);

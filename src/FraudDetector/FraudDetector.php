@@ -75,7 +75,7 @@ class FraudDetector
     /**
      * @param array $rules
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules): void
     {
         $this->rules = $rules;
     }
@@ -91,7 +91,7 @@ class FraudDetector
     /**
      * @param int $fraudScoring
      */
-    public function setFraudScoring(int $fraudScoring)
+    public function setFraudScoring(int $fraudScoring): void
     {
         $this->fraudScoring = $fraudScoring;
     }
@@ -107,7 +107,7 @@ class FraudDetector
     /**
      * @param int $maxScoring
      */
-    public function setMaxScoring(int $maxScoring)
+    public function setMaxScoring(int $maxScoring): void
     {
         $this->maxScoring = $maxScoring;
     }
@@ -123,7 +123,7 @@ class FraudDetector
     /**
      * @param array $maxScoringRules
      */
-    public function setMaxScoringRules(array $maxScoringRules)
+    public function setMaxScoringRules(array $maxScoringRules): void
     {
         $this->maxScoringRules = $maxScoringRules;
     }
@@ -135,7 +135,7 @@ class FraudDetector
      *
      * @return bool
      */
-    public function isFraud($order)
+    public function isFraud($order): bool
     {
         $scoring = $this->getScoring($order);
         return $scoring >= $this->fraudScoring;
@@ -148,7 +148,7 @@ class FraudDetector
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         //if any critical rule returns fraud, automatically return max scoring
         if ($this->maxedOut($order)) {
@@ -179,7 +179,7 @@ class FraudDetector
      *
      * @return bool
      */
-    protected function maxedOut($order)
+    protected function maxedOut($order): bool
     {
         foreach ($this->maxScoringRules as $rule) {
             if ($rule->getScoring($order)) {
@@ -197,7 +197,7 @@ class FraudDetector
      *
      * @return bool
      */
-    protected function reachedMaxScoring($scoring)
+    protected function reachedMaxScoring($scoring): bool
     {
         return $scoring >= $this->maxScoring;
     }

@@ -31,13 +31,11 @@ class RuleFactory
      *
      * @return ScoringRuleInterface
      */
-    public function getRule(array $config)
+    public function getRule(array $config): ScoringRuleInterface
     {
         $fqdn = $this->getFQDN($config['name']);
         $scoring = !empty($config['scoring']) ? $config['scoring'] : 10;
-        unset($config['name']);
-        unset($config['scoring']);
-
+        unset($config['name'], $config['scoring']);
 
         return new $fqdn($scoring, $config);
     }

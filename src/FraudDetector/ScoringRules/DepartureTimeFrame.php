@@ -7,7 +7,7 @@
 
 namespace FraudDetector\ScoringRules;
 
-use FraudDetector\ScoringRules\ScoringRule as ScoringRule;
+use FraudDetector\ScoringRules\ScoringRule;
 
 /**
  * Rule to get scoring for an order checking order and departure time frame
@@ -24,8 +24,8 @@ class DepartureTimeFrame extends ScoringRule
     /**
      * DepartureTimeFrame constructor.
      *
-     * @param int $scoring
-     * @param int $acceptedTimeFrame
+     * @param int   $scoring
+     * @param array $config
      */
     public function __construct(int $scoring, array $config)
     {
@@ -44,14 +44,13 @@ class DepartureTimeFrame extends ScoringRule
      *
      * @return int
      */
-    public function getScoring($order)
+    public function getScoring($order): int
     {
         $departureTime = strtotime($order['travel_ticket']['depart_on']);
         $orderTime = strtotime($order['transaction']['ordered_on']);
         $differenceInSeconds = $departureTime - $orderTime;
 
-        return $differenceInSeconds < $this->timeFrame
-            ? $this->scoring : 0;
+        return $differenceInSeconds < $this->timeFrame ? $this->scoring : 0;
     }
 
     /**
@@ -61,7 +60,7 @@ class DepartureTimeFrame extends ScoringRule
      *
      * @return void
      */
-    public function setAcceptedTimeFrame($seconds)
+    public function setAcceptedTimeFrame($seconds): void
     {
         $this->timeFrame = $seconds;
     }
@@ -71,7 +70,7 @@ class DepartureTimeFrame extends ScoringRule
      *
      * @return int
      */
-    public function getAcceptedTimeFrame()
+    public function getAcceptedTimeFrame(): int
     {
         return $this->timeFrame;
     }

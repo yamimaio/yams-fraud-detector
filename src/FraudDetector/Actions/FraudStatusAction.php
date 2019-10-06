@@ -55,7 +55,7 @@ class FraudStatusAction implements ActionInterface
 
         $status = $this->detector->isFraud($data);
 
-        $this->logger->addInfo("Fraud Status " . $status);
+        $this->logger->addInfo('Fraud Status ' . $status);
 
         $body['status'] = $status;
         //todo could add detail of scoring

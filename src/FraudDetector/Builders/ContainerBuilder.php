@@ -54,7 +54,7 @@ class ContainerBuilder
      */
     protected function addLogger()
     {
-        $this->container['logger'] = function ($c) {
+        $this->container['logger'] = static function ($c) {
             $logger = new Logger('fraud_logger');
             $file_handler = new StreamHandler('php://stderr');
             $logger->pushHandler($file_handler);
@@ -82,7 +82,7 @@ class ContainerBuilder
      *
      * @return \FraudDetector\FraudDetector
      */
-    protected function getFraudDetector()
+    protected function getFraudDetector(): \FraudDetector\FraudDetector
     {
         $factory = new RuleFactory();
         $builder = new FraudDetectorBuilder($factory);
@@ -94,7 +94,7 @@ class ContainerBuilder
      * Adds FraudScoringAction to container
      *
      */
-    protected function addFraudScoreAction()
+    protected function addFraudScoreAction(): void
     {
         $this->container['FraudScoringAction'] = function ($c) {
             $detector = $this->getFraudDetector();

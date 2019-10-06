@@ -36,7 +36,7 @@ abstract class ScoringRule implements ScoringRuleInterface
      *
      * @return int
      */
-    public function getRuleScoring()
+    public function getRuleScoring(): int
     {
         return $this->scoring;
     }
@@ -48,7 +48,7 @@ abstract class ScoringRule implements ScoringRuleInterface
      *
      * @return void
      */
-    public function setRuleScoring($scoring)
+    public function setRuleScoring($scoring): void
     {
         $this->scoring = $scoring;
     }
