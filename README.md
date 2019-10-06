@@ -6,11 +6,18 @@ Yam's Fraud Detector
 * Web server with URL rewriting
 * PHP 7.0 or newer
 
-### Setup ###
+### Setup Without Docker ###
 1. cd to project root 
-1. ```git clone https://yamimaio@bitbucket.org/yamimaio/yams-fraud-detector.git .```
+1. ```git clone https://github.com/yamimaio/yams-fraud-detector.git .```
 1. Navigate into your project’s root directory and execute the bash command ```composer install```.
 1. Setup your localhost, Apache or Nginx to serve /app
+
+### Setup With Docker ###
+1. cd to project root 
+1. ```git clone https://github.com/yamimaio/yams-fraud-detector.git .```
+1. Navigate into your project’s root directory and execute the bash command ```docker-compose up```.
+1. You're ready to go on ```http://localhost:8088```
+1. Import postman collection available in ```docs``` for quick startup using the API
 
 ### Available Routes ###
 Only routes accesible are:
